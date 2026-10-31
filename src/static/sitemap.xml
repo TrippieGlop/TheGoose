@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url><loc>https://thegoose.vercel.app/</loc><priority>1.0</priority></url>
-<url><loc>https://thegoose.vercel.app/menu</loc><priority>0.9</priority></url>
-<url><loc>https://thegoose.vercel.app/catering</loc><priority>0.8</priority></url>
-<url><loc>https://thegoose.vercel.app/gander-room</loc><priority>0.8</priority></url>
-<url><loc>https://thegoose.vercel.app/visit</loc><priority>0.7</priority></url>
-<url><loc>https://thegoose.vercel.app/privacy</loc><priority>0.2</priority></url>
-<url><loc>https://thegoose.vercel.app/terms</loc><priority>0.2</priority></url>
-<url><loc>https://thegoose.vercel.app/accessibility</loc><priority>0.2</priority></url>
+<url><loc>https://thegoose-two.vercel.app/</loc><priority>1.0</priority></url>
+<url><loc>https://thegoose-two.vercel.app/menu</loc><priority>0.9</priority></url>
+<url><loc>https://thegoose-two.vercel.app/catering</loc><priority>0.8</priority></url>
+<url><loc>https://thegoose-two.vercel.app/gander-room</loc><priority>0.8</priority></url>
+<url><loc>https://thegoose-two.vercel.app/visit</loc><priority>0.7</priority></url>
+<url><loc>https://thegoose-two.vercel.app/privacy</loc><priority>0.2</priority></url>
+<url><loc>https://thegoose-two.vercel.app/terms</loc><priority>0.2</priority></url>
+<url><loc>https://thegoose-two.vercel.app/accessibility</loc><priority>0.2</priority></url>
 </urlset>

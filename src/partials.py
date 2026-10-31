@@ -1,5 +1,5 @@
 # Shared page chrome for The Goose site. build.py composes these into static HTML.
-SITE = "https://thegoose.vercel.app"
+SITE = "https://thegoose-two.vercel.app"
 
 HOAGIE = """<svg viewBox="0 0 420 320" role="img" aria-labelledby="hoagie-t"><title id="hoagie-t">Illustration of a stacked hoagie</title>
 <defs>
