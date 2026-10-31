@@ -1,0 +1,2 @@
+{ "name": "The Goose", "short_name": "The Goose", "start_url": "/", "display": "standalone", "background_color": "#f7f3e6", "theme_color": "#2c4220",
+  "icons": [{ "src": "/assets/img/favicon.svg", "sizes": "any", "type": "image/svg+xml" }] }
