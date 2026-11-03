@@ -4,6 +4,7 @@ Static site for The Goosemen deli (102 W. Fourth St, Bethlehem PA). No framework
 
 - `src/build.py` + `src/partials.py` assemble the pages into `site/` (`python3 src/build.py`).
 - Menu prices live in `src/assets/js/menu-data.js`.
+- Illustrations live in `src/art.py` (each one is an inline SVG).
 - Hours, closures, ordering link and secret-menu link live in `CONFIG` at the top of `src/assets/js/main.js`.
 - `site/` is the ready-to-deploy output (rebuild it after edits). `vercel.json` serves `site/` and adds security headers (CSP, HSTS, frame/sniff/referrer/permissions policies).
 
