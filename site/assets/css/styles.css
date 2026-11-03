@@ -160,7 +160,7 @@ em.script, .script { font-family: var(--f-script); font-weight: 400; font-style:
 .hero__art { position: relative; aspect-ratio: 1; }
 .hero__blob { position: absolute; inset: 4%; border-radius: 46% 54% 58% 42% / 44% 46% 54% 56%; background: radial-gradient(circle at 30% 30%, var(--matcha-300), var(--matcha-400) 55%, var(--matcha-600)); animation: morph 14s ease-in-out infinite; box-shadow: inset -20px -30px 60px rgba(31,46,23,.35); }
 @keyframes morph { 50% { border-radius: 58% 42% 44% 56% / 52% 58% 42% 48%; transform: rotate(8deg); } }
-.hero__hoagie { position: absolute; inset: 14% 2% 16% 2%; filter: drop-shadow(0 30px 30px rgba(31,46,23,.35)); animation: float 6s ease-in-out infinite; }
+.hero__hoagie { position: absolute; inset: 22% -6% 18% -4%; filter: drop-shadow(0 30px 30px rgba(31,46,23,.35)); animation: float 6s ease-in-out infinite; }
 @keyframes float { 50% { transform: translateY(-14px) rotate(-1.5deg); } }
 .badge-spin { position: absolute; width: clamp(110px, 14vw, 150px); top: 2%; right: 0; animation: spin 22s linear infinite; }
 .badge-spin text { font: 800 10.5px var(--f-body); letter-spacing: .26em; fill: var(--ink); text-transform: uppercase; }
@@ -208,16 +208,15 @@ section { position: relative; }
 }
 .tile:hover { transform: translate(-3px, -3px) rotate(-.4deg); box-shadow: 10px 10px 0 var(--ink); }
 .tile h3, .tile p, .tile .btn { position: relative; z-index: 1; }
-.tile--xl h3, .tile--xl p { background: var(--matcha-300); padding-right: 8px; }
 .tile h3 { font-size: clamp(1.5rem, 2.6vw, 2.3rem); margin-bottom: .25em; }
 .tile p { margin: 0; color: var(--muted); max-width: 36ch; }
 .tile .price { position: absolute; top: 22px; right: 22px; font-family: var(--f-display); font-weight: 800; font-size: 1.4rem; background: var(--foam); border: 2px solid var(--ink); border-radius: 999px; padding: 6px 14px; }
 .tile .tag { position: absolute; top: 22px; left: 22px; }
 .tile__art { position: absolute; right: -6%; top: 10%; width: 62%; opacity: .95; pointer-events: none; transition: transform .5s var(--ease-out); }
-.tile:hover .tile__art { transform: rotate(-6deg) scale(1.05); }
+.tile:hover .tile__art { transform: translate(6px, -8px) rotate(-2deg); }
 .tile--xl { grid-column: span 7; grid-row: span 2; background: var(--matcha-300); }
-.tile--xl .tile__art { width: 70%; top: 16%; right: -6%; }
-.tile--xl { justify-content: flex-end; padding-top: 72px; }
+.tile--xl .tile__art { position: relative; right: auto; top: auto; width: min(100%, 440px); margin: 8px auto 12px; }
+.tile--xl { justify-content: space-between; padding-top: 64px; }
 .tile--xl h3 { max-width: 12ch; }
 .tile--md { grid-column: span 5; background: var(--gold-soft); }
 .tile--sm { grid-column: span 5; background: var(--white); }
@@ -244,12 +243,13 @@ section { position: relative; }
 
 /* Feature split cards (catering / gander) */
 .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
-.duo-card { position: relative; border-radius: var(--r-xl); padding: clamp(28px, 4vw, 48px); min-height: 460px; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden; border: 2px solid var(--ink); }
+.duo-card { position: relative; border-radius: var(--r-xl); padding: clamp(28px, 4vw, 48px); min-height: 460px; display: flex; flex-direction: column; justify-content: flex-start; overflow: hidden; border: 2px solid var(--ink); }
 .duo-card h3 { font-size: clamp(2rem, 3.6vw, 3rem); }
 .duo-card--cater { background: var(--matcha-200); }
 .duo-card--room { background: var(--ink); color: var(--foam); border-color: var(--ink); }
 .duo-card--room .muted { color: rgba(247,243,230,.75); }
-.duo-card__art { position: absolute; right: -50px; bottom: -50px; width: 240px; opacity: .55; pointer-events: none; }
+.duo-card__art { width: min(78%, 320px); margin: -4px auto 20px; pointer-events: none; }
+.duo-card__art--hang { width: min(62%, 240px); margin-top: calc(-1 * clamp(28px, 4vw, 48px) - 2px); }
 .duo-card > div, .duo-card .btn-row { position: relative; z-index: 1; }
 .duo-card ul { list-style: none; padding: 0; margin: 0 0 28px; display: grid; gap: 10px; position: relative; }
 .duo-card li { display: flex; gap: 10px; align-items: flex-start; font-weight: 600; }
@@ -291,7 +291,13 @@ section { position: relative; }
 /* ---------- Page hero (inner pages) ---------- */
 .page-hero { padding: clamp(40px, 7vw, 96px) 0 clamp(40px, 6vw, 72px); position: relative; overflow: hidden; }
 .page-hero h1 .script { color: var(--matcha-700); font-size: 1.15em; }
-.page-hero__deco { position: absolute; right: -60px; top: 10px; width: clamp(200px, 30vw, 420px); opacity: .9; pointer-events: none; }
+.page-hero__split { display: grid; grid-template-columns: 1.15fr .85fr; gap: clamp(24px, 4vw, 56px); align-items: center; }
+.page-hero__split > :only-child { grid-column: 1 / -1; }
+.page-hero__art { width: 100%; max-width: 440px; justify-self: center; }
+.page-hero--room { padding-top: 0; padding-bottom: clamp(56px, 8vw, 104px); }
+.page-hero--room .page-hero__split > .reveal { padding-top: clamp(40px, 7vw, 96px); }
+.page-hero__art--hang { align-self: start; max-width: 340px; }
+@media (max-width: 860px) { .page-hero__split { grid-template-columns: 1fr; } .page-hero__art { max-width: 340px; order: -1; } .page-hero--room .page-hero__split > .reveal { padding-top: 0; } .page-hero__art--hang { max-width: 240px; } }
 
 /* ---------- Menu page ---------- */
 .menu-tools { position: sticky; top: 76px; z-index: 30; background: rgba(247,243,230,.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-block: 1px solid var(--line); padding: 12px 0; }
@@ -429,6 +435,7 @@ mark { background: var(--matcha-300); color: inherit; border-radius: 4px; paddin
   border-radius: 999px; padding: 8px 16px 8px 10px; font-weight: 700; font-size: .88rem; box-shadow: 0 10px 30px -10px rgba(0,0,0,.5);
   transform: translateY(140%); transition: transform .5s var(--ease-out); border: 2px solid var(--gold);
 }
+.hunt-meter:not(.is-visible) { visibility: hidden; transform: translateY(200%); }
 .hunt-meter.is-visible { transform: none; }
 .hunt-meter__eggs { display: flex; gap: 4px; }
 .hunt-meter__eggs i { width: 12px; height: 15px; border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; background: rgba(247,243,230,.2); }
@@ -471,3 +478,5 @@ mark { background: var(--matcha-300); color: inherit; border-radius: 4px; paddin
 .brand__word { white-space: nowrap; }
 .tile--md, .tile--sm { padding-top: 76px; }
 @media (max-width: 420px) { .brand__word { font-size: 1.8rem; } .nav__cta .btn { padding: 0 1em; } }
+
+.duo-card--room .duo-card__art--hang svg { overflow: visible; }

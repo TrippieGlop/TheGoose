@@ -1,6 +1,7 @@
 """Builds the static site into ../site. Run: python3 build.py"""
 import os, shutil, html
-from partials import head, chrome_top, chrome_bottom, egg, HOAGIE, GOOSE_BIG, TRAY, CHANDELIER, SITE
+from partials import head, chrome_top, chrome_bottom, egg, SITE
+from art import HERO_HOAGIE, SHUTTLE, CLUB, PLATTER, GOOSE, CHANDELIER
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(ROOT, "..", "site")
@@ -63,7 +64,7 @@ home = f"""
     </div>
     <div class="hero__art reveal" style="--d:.15s">
       <div class="hero__blob"></div>
-      <div class="hero__hoagie">{HOAGIE}</div>
+      <div class="hero__hoagie">{HERO_HOAGIE}</div>
       <svg class="badge-spin" viewBox="0 0 120 120" aria-hidden="true"><defs><path id="circ" d="M60 60m-46 0a46 46 0 1 1 92 0a46 46 0 1 1-92 0"/></defs><circle cx="60" cy="60" r="58" fill="#e7c98a" stroke="#241811" stroke-width="3"/><text><textPath href="#circ">Fresh sliced · Family run · Bethlehem PA ·</textPath></text><use href="/assets/img/sprite.svg#i-goose" x="38" y="38" width="44" height="44"/></svg>
       <div class="sticker sticker--a"><svg aria-hidden="true"><use href="/assets/img/sprite.svg#i-star"/></svg><span><b>Best Sandwich</b>Lehigh Valley Style</span></div>
       <div class="sticker sticker--b"><span><b>Lehigh’s</b>lunch tradition</span></div>
@@ -83,7 +84,7 @@ home = f"""
     <div class="bento">
       <a class="tile tile--xl reveal" href="/menu#special-hoagies" style="text-decoration:none">
         <span class="tag">Fan favorite</span><span class="price">$8.75</span>
-        <div class="tile__art">{HOAGIE.replace('id="hoagie-t"','id="hoagie-t2"').replace('aria-labelledby="hoagie-t"','aria-hidden="true"')}</div>
+        <div class="tile__art">{SHUTTLE}</div>
         <h3>Space Shuttle Special</h3>
         <p>Take-off turkey, robot roast beef &amp; countdown cheese on a hoagie roll. Liftoff guaranteed.</p>
       </a>
@@ -105,7 +106,7 @@ home = f"""
 
 <section class="section on-dark" aria-labelledby="story-h">
   <div class="wrap story">
-    <div class="story__art reveal">{GOOSE_BIG}{egg("story", "egg--float").replace('class="egg egg--float"', 'class="egg egg--float" style="right:8%;bottom:6%"')}</div>
+    <div class="story__art reveal">{GOOSE}</div>
     <div class="reveal" style="--d:.1s">
       <p class="eyebrow">Our story</p>
       <h2 id="story-h">A South Side tradition, one hoagie at a time.</h2>
@@ -128,6 +129,7 @@ home = f"""
     </div>
     <div class="duo">
       <article class="duo-card duo-card--cater reveal">
+        <div class="duo-card__art">{PLATTER.replace('id="pl-t"','id="pl-t2"').replace('aria-labelledby="pl-t"','aria-labelledby="pl-t2"')}</div>
         <div>
           <p class="eyebrow">Catering</p>
           <h3>Trays, buffets &amp; bag lunches</h3>
@@ -139,9 +141,9 @@ home = f"""
           </ul>
         </div>
         <div class="btn-row"><a class="btn" href="/catering">Catering menu {ic("arrow")}</a></div>
-        <div class="duo-card__art">{TRAY}</div>
       </article>
       <article class="duo-card duo-card--room on-dark reveal" style="--d:.1s">
+        <div class="duo-card__art duo-card__art--hang">{CHANDELIER}</div>
         <div>
           <p class="eyebrow">The Gander Room</p>
           <h3>A banquet hall upstairs</h3>
@@ -153,7 +155,6 @@ home = f"""
           </ul>
         </div>
         <div class="btn-row"><a class="btn btn--gold" href="/gander-room">Explore the room {ic("arrow")}</a></div>
-        <div class="duo-card__art">{CHANDELIER}</div>
       </article>
     </div>
   </div>
@@ -195,13 +196,15 @@ home = f"""
 # ---------------------------------------------------------------- MENU
 menu = f"""
 <section class="page-hero">
-  <div class="wrap reveal">
+  <div class="wrap page-hero__split">
+  <div class="reveal">
     <p class="eyebrow">The board</p>
     <h1>The <span class="script">Menu</span></h1>
     <p class="lede">Fresh-sliced, built to order. Choice of breads on sandwiches: rye, white, wheat or round rolls. Prices subject to change.</p>
     <div class="btn-row" style="margin-top:24px"><a class="btn btn--matcha" href="/account">{ic("bag")}Order online</a><a class="btn btn--ghost" href="/catering">Catering menu {ic("arrow")}</a></div>
   </div>
-  <div class="page-hero__deco" aria-hidden="true">{HOAGIE.replace('role="img" aria-labelledby="hoagie-t"','aria-hidden="true"').replace('<title id="hoagie-t">Illustration of a stacked hoagie</title>','')}</div>
+  <div class="page-hero__art reveal" style="--d:.1s">{CLUB}</div>
+  </div>
 </section>
 <div class="menu-tools">
   <div class="wrap menu-tools__inner">
@@ -222,13 +225,15 @@ def tray(name, price, desc, extra=""):
 
 catering = f"""
 <section class="page-hero">
-  <div class="wrap reveal">
+  <div class="wrap page-hero__split">
+  <div class="reveal">
     <p class="eyebrow">Catering</p>
     <h1>Feed the <span class="script">whole flock.</span></h1>
     <p class="lede">Office lunches, tailgates, team dinners, graduation parties. Trays and buffets built fresh, priced per person, and customized to your crowd and budget.</p>
     <div class="btn-row" style="margin-top:24px"><a class="btn btn--matcha" href="#inquire">Plan my order {ic("arrow")}</a><a class="btn btn--ghost" href="tel:+16108680176">{ic("phone")}(610) 868-0176</a></div>
   </div>
-  <div class="page-hero__deco">{TRAY}</div>
+  <div class="page-hero__art reveal" style="--d:.1s">{PLATTER}</div>
+  </div>
 </section>
 
 <section class="section" style="padding-top:24px" aria-labelledby="how-h">
@@ -313,14 +318,16 @@ catering = f"""
 
 # ---------------------------------------------------------------- GANDER ROOM
 gander = f"""
-<section class="page-hero on-dark" style="padding-bottom:clamp(72px,10vw,120px)">
-  <div class="wrap reveal">
+<section class="page-hero on-dark page-hero--room">
+  <div class="wrap page-hero__split">
+  <div class="reveal">
     <p class="eyebrow">Upstairs at The Goose</p>
     <h1>The Gander <span class="script" style="color:var(--gold-soft)">Room</span></h1>
     <p class="lede">A full-service banquet facility perched above The Goose on the fabulous South Side of Bethlehem. Bring the guests — we’ll handle the food.</p>
     <div class="btn-row" style="margin-top:24px"><a class="btn btn--gold" href="/catering#inquire">Ask about a date {ic("arrow")}</a><a class="btn btn--ghost" href="tel:+16108680176" style="color:var(--foam)">{ic("phone")}(610) 868-0176</a></div>
   </div>
-  <div class="page-hero__deco">{CHANDELIER}</div>
+  <div class="page-hero__art page-hero__art--hang reveal" style="--d:.1s">{CHANDELIER}</div>
+  </div>
 </section>
 <section class="section" aria-labelledby="occ-h">
   <div class="wrap">

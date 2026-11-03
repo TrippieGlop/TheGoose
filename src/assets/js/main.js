@@ -14,7 +14,7 @@
     hours: { 0: null, 1: [450, 960], 2: [450, 960], 3: [450, 960], 4: [450, 960], 5: [450, 960], 6: [600, 960] },
     // Closures: inclusive YYYY-MM-DD ranges
     closures: [{ from: "2026-11-28", to: "2026-12-01", label: "Closed for vacation · back Dec 2" }],
-    eggs: ["hero", "story", "sides", "hotmenu", "footer"]
+    eggs: ["hero", "sides", "hotmenu"]
   };
   window.GOOSE_CONFIG = CONFIG;
 
@@ -136,7 +136,7 @@
       html += "</ul></section>";
     });
     root.innerHTML = html;
-    bindEggs(root);
+
 
     // search
     var input = $("#menu-search"), empty = $("#menu-empty"), count = $("#menu-count");
@@ -171,7 +171,7 @@
   }
 
   /* ---- Golden egg hunt → secret menu ---- */
-  var found = store.get("goose-eggs") || [];
+  var found = (store.get("goose-eggs-v2") || []).filter(function (id) { return CONFIG.eggs.indexOf(id) > -1; });
   var meter = $("#hunt-meter"), toastEl = $("#toast"), vault = $("#vault");
   function toast(msg) {
     if (!toastEl) return;
@@ -192,12 +192,12 @@
       if (found.indexOf(id) > -1) { egg.hidden = true; return; }
       egg.addEventListener("click", function () {
         if (found.indexOf(id) > -1) return;
-        found.push(id); store.set("goose-eggs", found);
+        found.push(id); store.set("goose-eggs-v2", found);
         egg.classList.add("is-found");
         setTimeout(function () { egg.hidden = true; }, 700);
         paintMeter();
         var left = CONFIG.eggs.length - found.length;
-        if (left > 0) toast(["Honk! A golden egg.", "Nice nest-raiding.", "The geese are getting nervous.", "One more and the vault creaks open…"][Math.min(found.length - 1, 3)] + " " + left + " to go.");
+        if (left > 0) toast(left === 1 ? "Honk! One more and the vault creaks open…" : "Honk! A golden egg. " + left + " to go.");
         else { toast("HONK HONK! The vault is open."); setTimeout(openVault, 650); }
       });
     });
@@ -220,7 +220,7 @@
   document.addEventListener("keydown", function (e) {
     if (/input|textarea|select/i.test((e.target.tagName || ""))) return;
     buf = (buf + (e.key || "")).slice(-4).toLowerCase();
-    if (buf === "honk") toast(found.length >= CONFIG.eggs.length ? "You already cracked it. Footer → The Vault." : "Hint: eggs hide near the hoagie, the founders’ story, the sides, the hot buffet & the very bottom.");
+    if (buf === "honk") toast(found.length >= CONFIG.eggs.length ? "You already cracked it. Footer → The Vault." : "Hint: one by the big hoagie on Home, one with the Sides on the Menu, one in the Hot Buffet on Catering.");
   });
 
   function confetti() {

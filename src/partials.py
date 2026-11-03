@@ -1,64 +1,6 @@
 # Shared page chrome for The Goose site. build.py composes these into static HTML.
 SITE = "https://thegoose-two.vercel.app"
 
-HOAGIE = """<svg viewBox="0 0 420 320" role="img" aria-labelledby="hoagie-t"><title id="hoagie-t">Illustration of a stacked hoagie</title>
-<defs>
-<linearGradient id="bun" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e2a85c"/><stop offset=".55" stop-color="#c9822f"/><stop offset="1" stop-color="#9c5e1d"/></linearGradient>
-<linearGradient id="bunb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d69a4f"/><stop offset="1" stop-color="#a86623"/></linearGradient>
-</defs>
-<g stroke="#241811" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
-<path d="M48 214c-6 30 22 54 70 56h188c46-2 72-26 66-56z" fill="url(#bunb)"/>
-<path d="M40 206c22 12 44-6 66 6s44-8 66 4 44-8 66 4 44-10 66 2 44-6 64 2l-6 20c-20-6-40 6-62-2s-44 8-66-2-44 8-66-2-44 10-66-2-44 6-62-6z" fill="#7fae4d"/>
-<path d="M46 190c40 10 290 10 328 0l4 16c-40 12-296 12-336 0z" fill="#f0a3a0"/>
-<path d="M50 176c36 8 284 8 320 0l4 16c-40 10-288 10-328 0z" fill="#e7837f"/>
-<path d="M70 168l22 34 22-34zM150 168l20 30 20-30zM226 168l22 36 22-36zM304 168l20 30 20-30z" fill="#f4c542"/>
-<circle cx="110" cy="164" r="22" fill="#d9442f"/><circle cx="196" cy="166" r="22" fill="#d9442f"/><circle cx="282" cy="164" r="22" fill="#d9442f"/>
-<path d="M44 158c-4-60 66-100 166-100s172 40 166 100c-40 12-292 12-332 0z" fill="url(#bun)"/>
-<path d="M300 40l-6 104" stroke-width="4"/>
-<path d="M300 40l44 12-44 16z" fill="#a5382a"/>
-</g>
-<g fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" opacity=".55"><circle cx="110" cy="164" r="12"/><circle cx="196" cy="166" r="12"/><circle cx="282" cy="164" r="12"/></g>
-<text x="316" y="61" font-family="Yellowtail, cursive" font-size="18" fill="#f7f3e6">G</text>
-<g fill="#fff6dc" stroke="#241811" stroke-width="1.5"><ellipse cx="120" cy="96" rx="6" ry="3.4" transform="rotate(-20 120 96)"/><ellipse cx="160" cy="82" rx="6" ry="3.4" transform="rotate(10 160 82)"/><ellipse cx="208" cy="78" rx="6" ry="3.4"/><ellipse cx="252" cy="84" rx="6" ry="3.4" transform="rotate(-12 252 84)"/><ellipse cx="100" cy="124" rx="6" ry="3.4" transform="rotate(14 100 124)"/><ellipse cx="146" cy="112" rx="6" ry="3.4" transform="rotate(-8 146 112)"/><ellipse cx="190" cy="104" rx="6" ry="3.4" transform="rotate(18 190 104)"/><ellipse cx="236" cy="110" rx="6" ry="3.4" transform="rotate(-20 236 110)"/><ellipse cx="282" cy="108" rx="6" ry="3.4" transform="rotate(8 282 108)"/><ellipse cx="322" cy="122" rx="6" ry="3.4" transform="rotate(-14 322 122)"/></g>
-<path d="M78 112c20-30 60-42 90-44" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".35"/>
-</svg>"""
-
-# Keep the big goose simple and self-contained (hoagie in wing drawn inline)
-GOOSE_BIG = """<svg viewBox="0 0 400 500" role="img" aria-labelledby="goose-t"><title id="goose-t">Illustration of a friendly goose with a hoagie</title>
-<rect width="400" height="500" fill="#3d5a2b"/>
-<circle cx="200" cy="310" r="190" fill="#557a3a"/>
-<circle cx="200" cy="310" r="150" fill="none" stroke="#b5cf91" stroke-width="2" stroke-dasharray="4 10" opacity=".6"/>
-<g stroke="#241811" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
-<path d="M110 500c-10-90 34-150 96-170-24-26-34-60-34-96 0-56 34-96 84-96 40 0 64 26 66 58l44 14-44 18c-4 50-40 84-58 108 52 24 80 80 74 164z" fill="#fffdf7"/>
-<path d="M326 210l52 16-52 20z" fill="#e0a43c"/>
-<path d="M150 470c30-60 90-80 150-70" fill="none" opacity=".4"/>
-</g>
-<circle cx="272" cy="196" r="9" fill="#241811"/><circle cx="275" cy="193" r="3" fill="#fff"/>
-<path d="M244 236c10 8 26 10 38 4" fill="none" stroke="#e98b8b" stroke-width="8" stroke-linecap="round" opacity=".7"/>
-<g transform="translate(40 330) rotate(-12)" stroke="#241811" stroke-width="5" stroke-linejoin="round">
-<path d="M10 70c-2 16 12 26 36 26h120c22 0 36-10 34-26z" fill="#b8742a"/>
-<path d="M6 62c20 8 180 8 200 0l2 12c-24 8-180 8-204 0z" fill="#7fae4d"/>
-<path d="M8 52c22 6 176 6 196 0l2 12c-22 8-176 8-200 0z" fill="#e7837f"/>
-<path d="M30 48l14 18 14-18zM96 48l14 18 14-18zM156 48l14 18 14-18z" fill="#f4c542"/>
-<path d="M6 46c-2-34 44-56 100-56s104 22 100 56c-24 8-176 8-200 0z" fill="#d69a4f"/>
-</g>
-<text x="200" y="90" text-anchor="middle" font-family="Yellowtail, cursive" font-size="54" fill="#e7c98a" transform="rotate(-6 200 90)">since forever</text>
-</svg>"""
-
-TRAY = """<svg viewBox="0 0 300 300" aria-hidden="true"><g stroke="#241811" stroke-width="5" stroke-linejoin="round" stroke-linecap="round">
-<ellipse cx="150" cy="190" rx="140" ry="70" fill="#fffdf7"/><ellipse cx="150" cy="182" rx="118" ry="54" fill="#efe8d4"/>
-<rect x="70" y="140" width="56" height="36" rx="10" fill="#d69a4f"/><rect x="132" y="128" width="56" height="36" rx="10" fill="#d69a4f"/><rect x="176" y="156" width="56" height="36" rx="10" fill="#d69a4f"/><rect x="96" y="176" width="56" height="36" rx="10" fill="#d69a4f"/>
-<path d="M74 152h48M136 140h48M180 168h48M100 188h48" stroke="#7fae4d" stroke-width="6"/>
-<circle cx="214" cy="126" r="16" fill="#d9442f"/><circle cx="60" cy="196" r="12" fill="#8fb36a"/><circle cx="238" cy="206" r="12" fill="#f4c542"/>
-</g></svg>"""
-
-CHANDELIER = """<svg viewBox="0 0 300 300" aria-hidden="true"><g stroke="#e7c98a" stroke-width="4" fill="none" stroke-linecap="round">
-<path d="M150 0v70"/><path d="M60 120c0 40 180 40 180 0"/><path d="M90 90c0 30 120 30 120 0"/><path d="M150 70v80"/>
-<path d="M60 120v-18M240 120v-18M90 90v-14M210 90v-14M150 150v-14"/></g>
-<g fill="#c8963e"><circle cx="60" cy="96" r="7"/><circle cx="240" cy="96" r="7"/><circle cx="90" cy="70" r="7"/><circle cx="210" cy="70" r="7"/><circle cx="150" cy="130" r="7"/></g>
-<g fill="#fff3c4" opacity=".9"><path d="M60 80c-6 8-6 14 0 16 6-2 6-8 0-16zM240 80c-6 8-6 14 0 16 6-2 6-8 0-16zM90 54c-6 8-6 14 0 16 6-2 6-8 0-16zM210 54c-6 8-6 14 0 16 6-2 6-8 0-16zM150 114c-6 8-6 14 0 16 6-2 6-8 0-16z"/></g>
-<g fill="#e7c98a" opacity=".5"><circle cx="40" cy="200" r="3"/><circle cx="260" cy="180" r="2"/><circle cx="120" cy="230" r="2"/><circle cx="200" cy="250" r="3"/></g></svg>"""
-
 NAV = [("index.html", "Home"), ("menu.html", "Menu"), ("catering.html", "Catering"), ("gander-room.html", "Gander Room"), ("visit.html", "Visit")]
 
 
@@ -164,7 +106,7 @@ def chrome_bottom(scripts=""):
       <div>
         <h4>Hours</h4>
         <ul><li>Mon–Fri · 7:30am–4pm</li><li>Sat · 10am–4pm</li><li>Sun · select Sundays</li></ul>
-        <p style="margin-top:14px;font-size:.9rem">Psst — five golden eggs are hidden on this site. {egg("footer")}</p>
+        <p style="margin-top:14px;font-size:.9rem">Psst — three golden eggs are hidden around this site. Find them all to open the vault.</p>
       </div>
     </div>
     <div class="footer__base">
