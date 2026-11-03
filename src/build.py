@@ -1,19 +1,10 @@
 """Builds the static site into ../site. Run: python3 build.py"""
 import os, shutil, html
 from partials import head, chrome_top, chrome_bottom, egg, SITE
-from art import HERO_HOAGIE, SHUTTLE, TAKE_SHOTS, GOMBO, CHEESESTEAK, PLATTER, CHAFING, GOOSE, CHANDELIER
+from art import WALK_GOOSE, FOOTPRINT, HERO_HOAGIE, SHUTTLE, TAKE_SHOTS, GOMBO, CHEESESTEAK, PLATTER, CHAFING, GOOSE, CHANDELIER
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(ROOT, "..", "site")
-
-MARQUEE_A = ["Space Shuttle Special", "The Gombo", "Take A Shots", "New-New-New", "The Geuben", "Black-Out Hoagie", "Guna Meld", "Mamma Goosey Stuffa Your Face"]
-MARQUEE_B = ["Family run", "Off campus, on point", "Fresh sliced daily", "Catering for any crowd", "South Side Bethlehem", "Online ordering"]
-
-
-def marquee(items, alt=False):
-    spans = "".join(f"<span>{html.escape(i)}</span>" for i in items) * 2
-    return f'<div class="marquee{" marquee--alt" if alt else ""}" aria-hidden="true"><div class="marquee__track">{spans}</div></div>'
-
 
 def ic(name, cls=""):
     return f'<svg class="{cls}" aria-hidden="true"><use href="/assets/img/sprite.svg#i-{name}"/></svg>'
@@ -72,8 +63,13 @@ home = f"""
     </div>
   </div>
 </section>
-{marquee(MARQUEE_A)}
-{marquee(MARQUEE_B, alt=True)}
+<section class="gwalk" aria-label="A goose walking across the page" data-gwalk>
+  <div class="gwalk__ground" aria-hidden="true"></div>
+  <div class="gwalk__prints" aria-hidden="true"></div>
+  <template id="gw-print">{FOOTPRINT}</template>
+  <button class="gwalk__egg" type="button" aria-label="A shiny egg the goose dropped" hidden><svg viewBox="0 0 22 28" aria-hidden="true"><use href="/assets/img/sprite.svg#i-egg"/></svg></button>
+  <div class="gwalk__goose" aria-hidden="true"><span class="gwalk__honk">Honk!</span>{WALK_GOOSE}</div>
+</section>
 
 <section class="section" aria-labelledby="fav-h">
   <div class="wrap">

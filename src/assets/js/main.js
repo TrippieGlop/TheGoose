@@ -237,6 +237,53 @@
     })();
   }
 
+  /* ---- Home banner: goose walks across, leaving footprints and a decoy egg ---- */
+  var gw = $("[data-gwalk]");
+  if (gw) (function () {
+    var goose = $(".gwalk__goose", gw), prints = $(".gwalk__prints", gw), tpl = $("#gw-print"), egg = $(".gwalk__egg", gw);
+    var W = 0, gooseW = 0, x = 0, lastStep = 0, foot = 0, eggDone = false, running = false, last = 0, pauseUntil = 0;
+    var SPEED = 95, STRIDE = 38;
+    function size() { W = gw.clientWidth; gooseW = goose.offsetWidth; }
+    function reset() { x = -gooseW - 20; lastStep = x; eggDone = false; egg.hidden = true; egg.classList.remove("is-dropped", "is-gone"); }
+    function honk() { gw.classList.add("is-honking"); setTimeout(function () { gw.classList.remove("is-honking"); }, 1100); }
+    function print(px, keep) {
+      var el = document.createElement("div"); el.className = "gwalk__print";
+      el.innerHTML = tpl.innerHTML;
+      el.style.left = (px + gooseW * 0.42) + "px";
+      el.style.bottom = (foot ? 14 : 28) + "px";
+      el.style.transform = "rotate(" + (foot ? 8 : -8) + "deg)";
+      foot = 1 - foot; prints.appendChild(el);
+      if (keep) return;
+      requestAnimationFrame(function () { el.classList.add("is-fading"); });
+      setTimeout(function () { el.remove(); }, 4300);
+    }
+    function frame(t) {
+      if (!running) return;
+      var dt = Math.min(0.05, (t - last) / 1000 || 0); last = t;
+      if (t < pauseUntil) { requestAnimationFrame(frame); return; }
+      x += SPEED * dt;
+      if (x - lastStep >= STRIDE) { lastStep = x; print(x); }
+      if (!eggDone && x > W * 0.55) {
+        eggDone = true; egg.style.left = (x + gooseW * 0.2) + "px"; egg.hidden = false; egg.classList.add("is-dropped");
+        honk(); pauseUntil = t + 700;
+      }
+      if (x > W + 30) { egg.classList.add("is-gone"); reset(); pauseUntil = t + 1800; }
+      goose.style.transform = "translateX(" + x + "px)";
+      requestAnimationFrame(frame);
+    }
+    egg.addEventListener("click", function () { toast("Nice try. That one’s a decoy. The real golden eggs are hiding elsewhere."); });
+    size(); reset(); window.addEventListener("resize", size);
+    if (reduceMotion) { gw.classList.add("is-static"); goose.style.transform = "translateX(" + (W * 0.62) + "px)";
+      for (var i = 0; i < 9; i++) { x = W * 0.62 - (9 - i) * STRIDE; print(x, true); } return; }
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (en) {
+        var vis = en[0].isIntersecting;
+        if (vis && !running) { running = true; last = performance.now(); requestAnimationFrame(frame); }
+        if (!vis) running = false;
+      }).observe(gw);
+    } else { running = true; requestAnimationFrame(frame); }
+  })();
+
   /* ---- Forms ---- */
   function validate(form) {
     var ok = true, first = null;

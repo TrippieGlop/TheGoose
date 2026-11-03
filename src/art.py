@@ -405,3 +405,42 @@ CHAFING = f"""<svg viewBox="0 0 460 340" role="img" aria-labelledby="cf-t"><titl
 <g fill="none" stroke="#fffdf7" stroke-width="5.5" stroke-linecap="round"><path d="M186 124 c-14 -16 14 -24 0 -42"/><path d="M230 118 c-14 -16 14 -24 0 -42"/><path d="M274 124 c-14 -16 14 -24 0 -42"/></g>
 <g fill="none" stroke="{INK}" stroke-width="2" stroke-linecap="round" opacity=".3"><path d="M186 124 c-14 -16 14 -24 0 -42"/><path d="M230 118 c-14 -16 14 -24 0 -42"/><path d="M274 124 c-14 -16 14 -24 0 -42"/></g>
 </svg>"""
+
+# ---------------------------------------------------------------- 11. Home banner: walking goose (legs animate via CSS)
+WALK_GOOSE = f"""<svg viewBox="0 -12 132 136" aria-hidden="true" class="gw__svg">
+<g class="gw__leg gw__leg--back" stroke="{INK}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M50 88 L49 106" stroke="#241811" stroke-width="10"/><path d="M50 88 L49 106" stroke="#e8a33a" stroke-width="6"/>
+  <path d="M49 106 L66 104 L62 110 L58 108 L56 113 L52 110 L44 113 Z" fill="#e8a33a"/>
+</g>
+<g stroke="{INK}" stroke-width="9" stroke-linejoin="round">
+  <path d="M10 60 C4 54 4 46 10 44 C16 50 24 52 30 54 Z" fill="#fffdf7"/>
+  <ellipse cx="54" cy="70" rx="36" ry="23" fill="#fffdf7"/>
+  <path d="M72 58 C84 44 74 28 82 12 L104 16 C98 30 100 46 92 64 Z" fill="#fffdf7"/>
+  <circle cx="94" cy="14" r="15" fill="#fffdf7"/>
+</g>
+<g fill="#fffdf7">
+  <path d="M10 60 C4 54 4 46 10 44 C16 50 24 52 30 54 Z"/>
+  <ellipse cx="54" cy="70" rx="36" ry="23"/>
+  <path d="M72 58 C84 44 74 28 82 12 L104 16 C98 30 100 46 92 64 Z"/>
+  <circle cx="94" cy="14" r="15"/>
+</g>
+<path d="M81 22 c-4 14 2 26 -2 38" fill="none" stroke="#ebe4d0" stroke-width="7" stroke-linecap="round"/>
+<path d="M26 64 C34 54 56 52 70 62 C64 76 44 82 28 74 Z" fill="#f4efe0" stroke="{INK}" stroke-width="3" stroke-linejoin="round"/>
+<g fill="none" stroke="{INK}" stroke-width="2.2" stroke-linecap="round" opacity=".45"><path d="M36 66 c8 -4 18 -4 26 0"/><path d="M38 72 c8 -2 16 -2 22 0"/></g>
+<g stroke="{INK}" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+  <path d="M106 20 C114 18 122 20 128 25 C122 28 114 29 107 28 Z" fill="#e8a33a"/>
+  <path d="M107 29 C114 30 120 30 124 29 C120 33 113 35 107 33 Z" fill="#d48a26"/>
+</g>
+<circle cx="99" cy="9" r="3.2" fill="{INK}"/><circle cx="100" cy="8" r="1.1" fill="#fff"/>
+<ellipse cx="97" cy="20" rx="4.5" ry="2.6" fill="#f0a3a0" opacity=".75"/>
+<g transform="translate(0 -10) rotate(-10 94 10)" stroke="{INK}" stroke-width="2.6" stroke-linejoin="round">
+  <path d="M78 14 L82 2 C90 -2 100 -2 108 1 L112 13 C100 10 90 10 78 14 Z" fill="#fffaf0"/>
+  <path d="M79 10 C90 7 101 7 111 9 L112 13 C100 10 90 10 78 14 Z" fill="#8fb36a"/>
+</g>
+<g class="gw__leg gw__leg--front" stroke="{INK}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M62 90 L63 108" stroke="#241811" stroke-width="10"/><path d="M62 90 L63 108" stroke="#e8a33a" stroke-width="6"/>
+  <path d="M63 108 L80 106 L76 112 L72 110 L70 115 L66 112 L58 115 Z" fill="#e8a33a"/>
+</g>
+</svg>"""
+
+FOOTPRINT = f"""<svg viewBox="0 0 40 40" aria-hidden="true"><path d="M7 20 C15 12 23 7 31 5 Q29 12 34 14 Q31 18 37 20 Q31 22 34 26 Q29 28 31 35 C23 33 15 28 7 20 Z" fill="#c8963e" stroke="{INK}" stroke-width="2.2" stroke-linejoin="round"/><g stroke="#8a5f22" stroke-width="1.6" stroke-linecap="round"><path d="M8 20 L30 7"/><path d="M8 20 L35 20"/><path d="M8 20 L30 33"/></g><circle cx="7" cy="20" r="3" fill="#c8963e" stroke="{INK}" stroke-width="2"/></svg>"""

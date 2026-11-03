@@ -178,15 +178,6 @@ em.script, .script { font-family: var(--f-script); font-weight: 400; font-style:
   .hero__art { max-width: 460px; width: 100%; margin: 0 auto; }
 }
 
-/* ---------- Marquee ---------- */
-.marquee { background: var(--ink); color: var(--foam); overflow: hidden; padding: 18px 0; transform: rotate(-1.5deg); margin: -40px -20px 0; position: relative; z-index: 2; border-block: 3px solid var(--gold); }
-.marquee--alt { background: var(--matcha-400); color: var(--ink); transform: rotate(1.2deg); margin-top: 6px; z-index: 1; border-color: var(--ink); }
-.marquee__track { display: flex; width: max-content; animation: marquee 38s linear infinite; }
-.marquee--alt .marquee__track { animation-direction: reverse; animation-duration: 46s; }
-.marquee span { font-family: var(--f-display); font-size: clamp(1.3rem, 2.4vw, 2rem); font-weight: 700; font-style: italic; padding: 0 22px; white-space: nowrap; display: inline-flex; align-items: center; gap: 44px; }
-.marquee span::after { content: "✺"; font-style: normal; color: var(--gold); font-size: .8em; }
-.marquee--alt span::after { color: var(--brick); }
-@keyframes marquee { to { transform: translateX(-50%); } }
 
 /* ---------- Sections ---------- */
 section { position: relative; }
@@ -471,7 +462,6 @@ mark { background: var(--matcha-300); color: inherit; border-radius: 4px; paddin
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
   .reveal { opacity: 1; transform: none; }
-  .marquee__track { animation: none; }
 }
 
 /* refinements */
@@ -488,3 +478,32 @@ mark { background: var(--matcha-300); color: inherit; border-radius: 4px; paddin
 .tile--xl, .tile--md, .tile--sm { justify-content: flex-start; }
 .tile--xl .tile__art, .tile--md .tile__art, .tile--sm .tile__art { margin-bottom: auto; padding-bottom: 12px; }
 .tile--xl .tile__art { width: min(100%, 560px); }
+
+/* ---------- Home banner: goose walk ---------- */
+.gwalk { position: relative; height: 190px; margin-top: -40px; overflow: hidden; }
+.gwalk__ground { position: absolute; left: 0; right: 0; bottom: 0; height: 62px; background:
+  linear-gradient(var(--matcha-300), var(--matcha-300)) top/100% 6px no-repeat,
+  repeating-linear-gradient(90deg, transparent 0 46px, rgba(36,24,17,.1) 46px 48px), var(--matcha-200);
+  border-top: 3px solid var(--ink); }
+.gwalk__ground::before { content: ""; position: absolute; left: 0; right: 0; top: -15px; height: 16px; background:
+  radial-gradient(circle at 6px 16px, var(--matcha-400) 5px, transparent 6px) 0 0/34px 16px repeat-x,
+  radial-gradient(circle at 20px 16px, var(--matcha-600) 4px, transparent 5px) 0 0/58px 16px repeat-x; }
+.gwalk__prints { position: absolute; inset: 0; pointer-events: none; }
+.gwalk__print { position: absolute; width: 26px; height: 26px; opacity: .9; transition: opacity 2.4s ease 1.6s; }
+.gwalk__print.is-fading { opacity: 0; }
+.gwalk__goose { position: absolute; left: 0; bottom: 30px; width: 120px; height: 124px; will-change: transform; }
+.gwalk__svg { width: 100%; height: 100%; overflow: visible; animation: gw-bob .36s ease-in-out infinite alternate; transform-origin: 50% 90%; }
+@keyframes gw-bob { from { transform: translateY(0) rotate(-2.5deg); } to { transform: translateY(-3px) rotate(2.5deg); } }
+.gw__leg { transform-box: fill-box; transform-origin: 50% 0; animation: gw-step .36s ease-in-out infinite alternate; }
+.gw__leg--back { animation-direction: alternate-reverse; }
+@keyframes gw-step { from { transform: rotate(-16deg); } to { transform: rotate(18deg); } }
+.gwalk__honk { position: absolute; right: -6px; top: -16px; background: var(--white); border: 2px solid var(--ink); border-radius: 14px; padding: 3px 10px; font: 800 .82rem var(--f-body); box-shadow: 3px 3px 0 var(--ink); opacity: 0; transform: translateY(6px) scale(.8); transition: opacity .25s, transform .25s; white-space: nowrap; }
+.gwalk__honk::after { content: ""; position: absolute; left: 14px; bottom: -8px; border: 7px solid transparent; border-top-color: var(--ink); border-bottom: 0; }
+.gwalk.is-honking .gwalk__honk { opacity: 1; transform: none; }
+.gwalk__egg { position: absolute; bottom: 30px; width: 34px; height: 42px; padding: 0; border: 0; background: transparent; cursor: pointer; }
+.gwalk__egg svg { width: 22px; height: 28px; margin: 0 auto; filter: drop-shadow(0 0 8px rgba(231,201,138,.9)); }
+.gwalk__egg.is-dropped { animation: gw-drop .6s cubic-bezier(.3,1.6,.5,1) both; }
+@keyframes gw-drop { from { transform: translateY(-46px) scale(.6); } to { transform: none; } }
+.gwalk__egg.is-gone { opacity: 0; transition: opacity .6s; }
+.gwalk.is-static .gwalk__svg, .gwalk.is-static .gw__leg { animation: none; }
+@media (max-width: 600px) { .gwalk { height: 160px; } .gwalk__goose { width: 94px; height: 98px; } }
