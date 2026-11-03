@@ -1,4 +1,4 @@
-/* The Goose — menu data. Edit prices/items here; the menu page renders from this file. */
+/* The Goose: menu data. Edit prices/items here; the menu page renders from this file. */
 window.GOOSE_MENU = [
   {
     id: "special-hoagies", name: "Special Hoagies", blurb: "The heavy hitters. Built on a hoagie roll, built to fall apart.",
@@ -9,7 +9,7 @@ window.GOOSE_MENU = [
     ]
   },
   {
-    id: "foods", name: "Foods", blurb: "Hot, melty, toasted — the house originals.",
+    id: "foods", name: "Foods", blurb: "Hot, melty and toasted. The house originals.",
     items: [
       { n: "The Egg-citing", d: "One egg and your choice of bacon, ham, or sausage with melted cheese on a roll", p: ["2.99"], tag: "Breakfast" },
       { n: "The Geuben", d: "Thinly sliced corned beef, sauerkraut, melted Swiss & Russian dressing on toasted rye", p: ["7.75"] },
@@ -106,7 +106,7 @@ window.GOOSE_MENU = [
     ]
   },
   {
-    id: "beverages", name: "Beverages & Snacks", blurb: "Prices vary — ask at the counter. Want something not listed? Add it in your order notes.",
+    id: "beverages", name: "Beverages & Snacks", blurb: "Prices vary, so ask at the counter. Want something not listed? Add it in your order notes.",
     items: [
       { n: "16 oz. Lipton", d: "", p: [] }, { n: "16 oz. Ocean Spray", d: "", p: [] },
       { n: "20 oz. Soda", d: "", p: [] }, { n: "20 oz. All Sport", d: "", p: [] },

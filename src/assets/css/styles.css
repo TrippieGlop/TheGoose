@@ -480,3 +480,11 @@ mark { background: var(--matcha-300); color: inherit; border-radius: 4px; paddin
 @media (max-width: 420px) { .brand__word { font-size: 1.8rem; } .nav__cta .btn { padding: 0 1em; } }
 
 .duo-card--room .duo-card__art--hang svg { overflow: visible; }
+
+.tile--md .tile__art, .tile--sm .tile__art { position: relative; right: auto; top: auto; margin: 0 auto 10px; }
+.tile--md .tile__art { width: min(100%, 270px); }
+.tile--sm .tile__art { width: min(100%, 190px); }
+.tile--md, .tile--sm { padding-top: 64px; justify-content: space-between; }
+.tile--xl, .tile--md, .tile--sm { justify-content: flex-start; }
+.tile--xl .tile__art, .tile--md .tile__art, .tile--sm .tile__art { margin-bottom: auto; padding-bottom: 12px; }
+.tile--xl .tile__art { width: min(100%, 560px); }

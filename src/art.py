@@ -91,34 +91,6 @@ SHUTTLE = f"""<svg viewBox="-10 0 460 386" role="img" aria-labelledby="sh-t"><ti
 </g>
 </svg>"""
 
-# ---------------------------------------------------------------- 3. Menu hero: triple-decker club quarters
-def _club_wedge(x, y, s, frill, gid):
-    """A club-sandwich quarter standing on its cut edge: layered triangle with a frilled toothpick."""
-    layers = [("#e8c48a", 16), ("#86b84f", 8), ("#e2503a", 9), ("#f3cfa6", 12), ("#f6e3b8", 14), ("#b2472f", 8), ("#f6dc7a", 9), ("#f2a3a0", 11), ("#e8c48a", 16)]
-    bands, yy = [], 30
-    for color, h in layers:
-        bands.append(f'<rect x="0" y="{yy}" width="220" height="{h}" fill="{color}"/>')
-        yy += h
-    tri = "M110 0 L218 140 L2 140 Z"
-    return f"""<g transform="translate({x} {y}) scale({s})">
-<clipPath id="{gid}"><path d="{tri}"/></clipPath>
-<g clip-path="url(#{gid})"><rect x="0" y="0" width="220" height="30" fill="#e8c48a"/>{''.join(bands)}<rect x="0" y="{yy}" width="220" height="40" fill="#e8c48a"/>
-<g stroke="{INK}" stroke-width="2" opacity=".35"><path d="M0 46 H220"/><path d="M0 80 H220"/><path d="M0 108 H220"/></g></g>
-<path d="{tri}" fill="none" stroke="#a9631f" stroke-width="12" stroke-linejoin="round"/>
-<path d="{tri}" fill="none" stroke="{INK}" stroke-width="4.5" stroke-linejoin="round"/>
-<path d="M110 -64 L110 70" stroke="#e7c98a" stroke-width="5" stroke-linecap="round"/><path d="M110 -64 L110 70" stroke="{INK}" stroke-width="1.4" opacity=".6"/>
-<g fill="{frill}" stroke="{INK}" stroke-width="2.5" stroke-linejoin="round"><path d="M110 -66 l-14 -16 6 -2 -10 -10 8 0 -4 -12 10 6 4 -12 4 12 10 -6 -4 12 8 0 -10 10 6 2 -14 16 z"/></g>
-</g>"""
-
-CLUB = f"""<svg viewBox="0 -34 440 364" aria-hidden="true">
-<ellipse cx="220" cy="300" rx="196" ry="22" fill="#fffdf7" stroke="{INK}" stroke-width="4.5"/>
-<ellipse cx="220" cy="296" rx="160" ry="12" fill="#efe8d4"/>
-{_club_wedge(40, 120, 1.0, "#8fb36a", "cl-a")}
-{_club_wedge(190, 90, 1.12, "#a5382a", "cl-b")}
-<g stroke="{INK}" stroke-width="3.5"><circle cx="86" cy="286" r="11" fill="#e2503a"/><circle cx="356" cy="284" r="9" fill="#5c7a2e"/></g>
-<g transform="rotate(-10 380 280)"><rect x="338" y="268" width="78" height="22" rx="11" fill="#7e9f3b" stroke="{INK}" stroke-width="4"/></g>
-</svg>"""
-
 # ---------------------------------------------------------------- 4. Catering platter
 def _mini_sub(x, y, r=0):
     return f"""<g transform="translate({x} {y}) rotate({r})" stroke="{INK}" stroke-width="3.5" stroke-linejoin="round">
@@ -286,4 +258,150 @@ CHANDELIER = f"""<svg viewBox="0 0 360 380" role="img" aria-labelledby="ch-t"><t
 <path d="M156 262 C161 269 161 276 156 281 C151 276 151 269 156 262 Z"/><path d="M204 262 C209 269 209 276 204 281 C199 276 199 269 204 262 Z"/>
 </g>
 <g fill="#fff" opacity=".9"><circle cx="70" cy="120" r="1.8"/><circle cx="292" cy="110" r="2.2"/><circle cx="40" cy="300" r="1.6"/><circle cx="326" cy="300" r="2"/><circle cx="110" cy="340" r="1.6"/><circle cx="250" cy="346" r="1.8"/></g>
+</svg>"""
+
+# ---------------------------------------------------------------- 7. Take A Shots: pressed triple-decker on rye, cut in half
+def _rye(x, y, w, h=24, top=False):
+    seeds = "".join(f'<ellipse cx="{x + 18 + i * (w - 36) / 6:.0f}" cy="{y + (8 if i % 2 else 15)}" rx="3.2" ry="1.6" fill="#3d2a1a" transform="rotate({-20 if i % 2 else 25} {x + 18 + i * (w - 36) / 6:.0f} {y + 10})"/>' for i in range(7))
+    grill = "".join(f'<path d="M{x + 30 + i * 46} {y + 3} l20 {h - 6}" stroke="#5a3417" stroke-width="5" stroke-linecap="round" opacity=".55"/>' for i in range(int((w - 40) / 46))) if top else ""
+    return f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="8" fill="#9a6a3c" stroke="{INK}" stroke-width="4"/><rect x="{x + 5}" y="{y + 5}" width="{w - 10}" height="{h - 10}" rx="5" fill="#c79a62"/>{grill}{seeds}'
+
+def _shots_half(x, y, w):
+    return f"""<g transform="translate({x} {y})">
+{_rye(0, 112, w)}
+<path d="M-4 104 c12 -8 22 8 34 0 s22 8 34 0 22 8 34 0 22 8 34 0 22 8 34 0 l0 12 L-4 116 Z" transform="scale({w / 166} 1)" fill="#8e3b32" stroke="{INK}" stroke-width="3.5" stroke-linejoin="round"/>
+<rect x="-2" y="92" width="{w + 4}" height="16" rx="6" fill="#f5efd9" stroke="{INK}" stroke-width="3.5"/>
+<g fill="#86b84f"><circle cx="{w * .2:.0f}" cy="100" r="2.4"/><circle cx="{w * .45:.0f}" cy="98" r="2.4"/><circle cx="{w * .7:.0f}" cy="101" r="2.4"/></g><g fill="#e98a3a"><circle cx="{w * .32:.0f}" cy="101" r="2.2"/><circle cx="{w * .58:.0f}" cy="99" r="2.2"/><circle cx="{w * .86:.0f}" cy="100" r="2.2"/></g>
+{_rye(0, 66, w)}
+<rect x="-2" y="52" width="{w + 4}" height="16" rx="6" fill="#f3cfa6" stroke="{INK}" stroke-width="3.5"/>
+<path d="M-4 40 L{w + 4} 40 L{w + 4} 52 L{w * .85:.0f} 52 L{w * .82:.0f} 72 L{w * .78:.0f} 52 L{w * .45:.0f} 52 L{w * .42:.0f} 66 L{w * .38:.0f} 52 L{w * .12:.0f} 52 L{w * .09:.0f} 78 L{w * .05:.0f} 52 L-4 52 Z" fill="#f6e3a0" stroke="{INK}" stroke-width="3.5" stroke-linejoin="round"/>
+<g fill="#e3c66e"><circle cx="{w * .25:.0f}" cy="46" r="3"/><circle cx="{w * .6:.0f}" cy="45" r="3.5"/></g>
+{_rye(0, 14, w, top=True)}
+</g>"""
+
+TAKE_SHOTS = f"""<svg viewBox="0 0 400 270" aria-hidden="true">
+<path d="M28 214 L372 214 C384 214 390 222 386 232 L374 254 C370 262 364 266 354 266 L46 266 C36 266 30 262 26 254 L14 232 C10 222 16 214 28 214 Z" fill="#b8844e" stroke="{INK}" stroke-width="4.5" stroke-linejoin="round"/>
+<path d="M34 230 H366" stroke="#8a5a2c" stroke-width="3" stroke-linecap="round" opacity=".6"/><path d="M60 246 H330" stroke="#8a5a2c" stroke-width="3" stroke-linecap="round" opacity=".5"/>
+{_shots_half(196, 74, 166)}
+{_shots_half(50, 82, 166)}
+<g fill="none" stroke="#fffdf7" stroke-width="5" stroke-linecap="round" opacity=".9"><path d="M110 70 c-12 -14 12 -22 0 -38"/><path d="M152 64 c-12 -14 12 -22 0 -38"/><path d="M282 62 c-12 -14 12 -22 0 -38"/></g>
+<g fill="none" stroke="{INK}" stroke-width="2.5" stroke-linecap="round" opacity=".35"><path d="M110 70 c-12 -14 12 -22 0 -38"/><path d="M152 64 c-12 -14 12 -22 0 -38"/><path d="M282 62 c-12 -14 12 -22 0 -38"/></g>
+</svg>"""
+
+# ---------------------------------------------------------------- 8. The Gombo: a wobbly four-slice tower on a skewer
+def _toast(x, y, w=170, rot=0):
+    return f'<g transform="rotate({rot} {x + w / 2} {y + 12})">{_rye(x, y, w, 26)}</g>'
+
+GOMBO = f"""<svg viewBox="0 0 300 330" aria-hidden="true">
+<ellipse cx="150" cy="312" rx="120" ry="12" fill="{INK}" opacity=".16"/>
+<g stroke="{INK}" stroke-width="3.5" stroke-linejoin="round" stroke-linecap="round">
+<!-- bottom up: toast, lettuce, tomato, toast, bacon, cheese, toast, meat, lettuce, toast -->
+</g>
+{_toast(64, 276, 172, 1)}
+<path d="M54 270 c10 -8 18 8 28 0 s18 8 28 0 18 8 28 0 18 8 28 0 18 8 28 0 18 8 28 0 l0 10 L54 280 Z" fill="#86b84f" stroke="{INK}" stroke-width="3.5" stroke-linejoin="round"/>
+<g fill="#e2503a" stroke="{INK}" stroke-width="3.5"><path d="M70 268 a22 11 0 0 1 44 0 z"/><path d="M128 266 a22 11 0 0 1 44 0 z"/><path d="M186 268 a22 11 0 0 1 44 0 z"/></g>
+{_toast(70, 228, 172, -2)}
+<!-- bacon hanging out both sides -->
+<path d="M58 222 C40 228 34 244 22 250 C16 252 14 246 18 242 C28 234 30 220 50 212 Z" fill="#b2472f" stroke="{INK}" stroke-width="3.5" stroke-linejoin="round"/>
+<path d="M30 238 c6 -4 10 -10 16 -16" stroke="#f3cfa6" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path d="M244 214 C262 214 272 228 284 230 C290 232 290 238 284 240 C270 242 262 232 246 228 Z" fill="#b2472f" stroke="{INK}" stroke-width="3.5" stroke-linejoin="round"/>
+<path d="M256 222 c8 2 14 8 22 10" stroke="#f3cfa6" stroke-width="3" fill="none" stroke-linecap="round"/>
+<rect x="56" y="206" width="192" height="18" rx="7" fill="#b2472f" stroke="{INK}" stroke-width="3.5"/>
+<path d="M66 216 c20 -6 30 6 50 0 s30 6 50 0 30 6 50 0" stroke="#f3cfa6" stroke-width="3" fill="none"/>
+<path d="M60 194 L244 192 L246 206 L222 206 L214 222 L206 206 L130 206 L122 220 L114 206 L60 206 Z" fill="#f6dc7a" stroke="{INK}" stroke-width="3.5" stroke-linejoin="round"/>
+{_toast(62, 166, 172, 2.5)}
+<path d="M58 160 c12 -10 24 10 36 0 s24 10 36 0 24 10 36 0 24 10 36 0 24 10 36 0 l0 10 L58 172 Z" fill="#f2a3a0" stroke="{INK}" stroke-width="3.5" stroke-linejoin="round"/>
+<path d="M60 150 c12 -10 22 6 34 -2 s22 10 34 0 22 8 34 0 22 10 34 0 22 8 40 0 l-2 12 L60 162 Z" fill="#c98a6a" stroke="{INK}" stroke-width="3.5" stroke-linejoin="round"/>
+<path d="M54 140 c10 -8 18 8 28 0 s18 8 28 0 18 8 28 0 18 8 28 0 18 8 28 0 18 8 28 0 l0 10 L54 150 Z" fill="#86b84f" stroke="{INK}" stroke-width="3.5" stroke-linejoin="round"/>
+{_toast(68, 112, 172, -3)}
+<!-- skewer + olive -->
+<path d="M156 34 L150 294" stroke="#e7c98a" stroke-width="6" stroke-linecap="round"/>
+<path d="M156 34 L150 294" stroke="{INK}" stroke-width="1.5" opacity=".6"/>
+<path d="M156 34 L156 112" stroke="#e7c98a" stroke-width="6" stroke-linecap="round"/><path d="M156 34 L156 112" stroke="{INK}" stroke-width="1.5" opacity=".6"/>
+<circle cx="156" cy="56" r="17" fill="#5c7a2e" stroke="{INK}" stroke-width="4"/><circle cx="156" cy="56" r="6" fill="#c2352b"/>
+<path d="M146 46 a12 12 0 0 1 8 -4" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" opacity=".6"/>
+<!-- "4" badge -->
+<g transform="rotate(10 252 70)"><circle cx="252" cy="70" r="26" fill="#a5382a" stroke="{INK}" stroke-width="4"/><text x="252" y="64" text-anchor="middle" font-family="Karla, sans-serif" font-weight="800" font-size="9" letter-spacing="1" fill="#f7f3e6">SLICES</text><text x="252" y="86" text-anchor="middle" font-family="Playfair Display, serif" font-weight="800" font-size="22" fill="#f7f3e6">4</text></g>
+</svg>"""
+
+# ---------------------------------------------------------------- 9. Menu hero: cheesesteak in a paper boat + soup of the day
+CHEESESTEAK = f"""<svg viewBox="0 0 460 330" role="img" aria-labelledby="cs-t"><title id="cs-t">Illustration of a cheesesteak in a checkered paper boat next to a cup of soup</title>
+<defs>
+<pattern id="cs-check" width="24" height="24" patternUnits="userSpaceOnUse"><rect width="24" height="24" fill="#fffaf0"/><rect width="12" height="12" fill="#a5382a"/><rect x="12" y="12" width="12" height="12" fill="#a5382a"/></pattern>
+<linearGradient id="cs-roll" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ecb86a"/><stop offset="1" stop-color="#b8702a"/></linearGradient>
+</defs>
+<ellipse cx="220" cy="306" rx="210" ry="16" fill="{INK}" opacity=".16"/>
+<!-- soup cup, behind -->
+<g stroke="{INK}" stroke-width="4.5" stroke-linejoin="round">
+<path d="M336 150 L436 150 L424 290 C424 298 418 302 410 302 L362 302 C354 302 348 298 348 290 Z" fill="#fffaf0"/>
+<path d="M340 186 L432 186 L428 232 L344 232 Z" fill="#8fb36a"/>
+<ellipse cx="386" cy="150" rx="50" ry="13" fill="#e98a3a"/>
+</g>
+<text x="386" y="216" text-anchor="middle" font-family="Yellowtail, cursive" font-size="24" fill="#241811">soup</text>
+<g fill="#5c9a3a"><circle cx="370" cy="148" r="3"/><circle cx="398" cy="152" r="3"/><circle cx="386" cy="144" r="2.5"/></g>
+<g fill="#f6dc7a"><circle cx="360" cy="152" r="3"/><circle cx="410" cy="147" r="3"/></g>
+<g fill="none" stroke="#fffdf7" stroke-width="5" stroke-linecap="round"><path d="M372 128 c-10 -12 10 -18 0 -32"/><path d="M402 126 c-10 -12 10 -18 0 -32"/></g>
+<g fill="none" stroke="{INK}" stroke-width="2" stroke-linecap="round" opacity=".35"><path d="M372 128 c-10 -12 10 -18 0 -32"/><path d="M402 126 c-10 -12 10 -18 0 -32"/></g>
+<g transform="rotate(24 420 140)"><rect x="414" y="80" width="10" height="70" rx="5" fill="#c9ced6" stroke="{INK}" stroke-width="3.5"/><ellipse cx="419" cy="78" rx="12" ry="16" fill="#c9ced6" stroke="{INK}" stroke-width="3.5"/></g>
+<!-- paper boat -->
+<path d="M20 196 L330 196 L306 290 C304 298 298 302 290 302 L60 302 C52 302 46 298 44 290 Z" fill="url(#cs-check)" stroke="{INK}" stroke-width="4.5" stroke-linejoin="round"/>
+<path d="M20 196 L330 196 L326 212 L24 212 Z" fill="#fffaf0" stroke="{INK}" stroke-width="4.5" stroke-linejoin="round"/>
+<!-- roll, opened, overflowing -->
+<g stroke="{INK}" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round">
+<path d="M34 198 C30 160 70 150 176 150 C282 150 320 160 316 198 Z" fill="url(#cs-roll)"/>
+<path d="M50 150 C48 112 100 96 180 96 C260 96 306 112 300 150 C250 160 100 160 50 150 Z" fill="url(#cs-roll)" transform="rotate(-6 176 128)"/>
+</g>
+<!-- chopped steak + onions + peppers + melted cheese, between the roll halves -->
+<g stroke="{INK}" stroke-width="3" stroke-linejoin="round">
+<path d="M46 168 c8 -14 20 -10 28 -16 c10 -6 22 4 30 -4 c10 -8 24 2 34 -6 c10 -6 22 6 32 -2 c10 -6 24 4 34 -4 c10 -6 22 4 32 -2 c12 -6 22 6 30 0 c10 -4 20 6 24 18 L46 176 Z" fill="#7a3f22"/>
+</g>
+<g fill="#5a2c16"><circle cx="80" cy="160" r="5"/><circle cx="120" cy="154" r="4"/><circle cx="168" cy="152" r="5"/><circle cx="214" cy="154" r="4"/><circle cx="262" cy="156" r="5"/><circle cx="292" cy="162" r="4"/></g>
+<g fill="none" stroke="#f6efd9" stroke-width="4" stroke-linecap="round"><path d="M92 150 c8 -6 16 -6 22 0"/><path d="M190 146 c8 -6 16 -6 22 0"/><path d="M240 150 c8 -6 16 -6 22 0"/></g>
+<g fill="none" stroke="#5c9a3a" stroke-width="5" stroke-linecap="round"><path d="M140 152 l14 -4"/><path d="M276 154 l12 -2"/><path d="M62 162 l12 -4"/></g>
+<path d="M50 172 L300 172 C304 178 302 182 296 182 L284 182 C282 196 274 198 272 184 L216 184 C214 200 204 202 202 184 L140 184 C138 194 130 196 128 184 L80 184 C78 200 68 202 66 184 L54 184 C48 184 46 178 50 172 Z" fill="#f4c542" stroke="{INK}" stroke-width="3.5" stroke-linejoin="round"/>
+<path d="M80 110 c30 -10 70 -14 100 -14" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".35" transform="rotate(-6 176 128)"/>
+<g fill="#fff6dc" stroke="{INK}" stroke-width="1.3" transform="rotate(-6 176 128)"><ellipse cx="120" cy="114" rx="5" ry="2.6"/><ellipse cx="170" cy="106" rx="5" ry="2.6"/><ellipse cx="222" cy="110" rx="5" ry="2.6"/><ellipse cx="262" cy="122" rx="5" ry="2.6"/><ellipse cx="94" cy="130" rx="5" ry="2.6"/></g>
+<!-- pickle -->
+<g transform="rotate(-18 120 296)"><rect x="70" y="280" width="104" height="28" rx="14" fill="#7e9f3b" stroke="{INK}" stroke-width="4.5"/><g fill="#c6d98e"><circle cx="92" cy="292" r="3"/><circle cx="116" cy="298" r="3"/><circle cx="140" cy="291" r="3"/></g></g>
+</svg>"""
+
+# ---------------------------------------------------------------- 10. Catering hero: hot buffet chafing dish with meatballs
+_MB = [(150, 152, 13), (186, 150, 13), (222, 150, 13), (258, 150, 13), (292, 152, 13),
+       (132, 172, 15), (172, 170, 15), (212, 170, 15), (252, 170, 15), (292, 172, 15), (326, 174, 14),
+       (116, 194, 16), (160, 194, 17), (206, 194, 17), (252, 194, 17), (298, 194, 17), (340, 196, 16)]
+CHAFING = f"""<svg viewBox="0 0 460 340" role="img" aria-labelledby="cf-t"><title id="cf-t">Illustration of a hot buffet chafing dish full of meatballs in marinara</title>
+<defs>
+<linearGradient id="cf-steel" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#eef1f5"/><stop offset=".5" stop-color="#c3cad3"/><stop offset="1" stop-color="#8e98a5"/></linearGradient>
+<linearGradient id="cf-lid" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#9aa4b1"/><stop offset=".4" stop-color="#f3f5f8"/><stop offset="1" stop-color="#a7b0bc"/></linearGradient>
+<radialGradient id="cf-ball" cx="35%" cy="30%" r="70%"><stop offset="0" stop-color="#a4593a"/><stop offset="1" stop-color="#5e2c18"/></radialGradient>
+</defs>
+<ellipse cx="230" cy="318" rx="200" ry="14" fill="{INK}" opacity=".16"/>
+<!-- roll-top lid, open behind -->
+<path d="M110 140 C110 40 350 40 350 140 Z" fill="url(#cf-lid)" stroke="{INK}" stroke-width="4.5" stroke-linejoin="round"/>
+<path d="M140 120 C150 70 200 58 230 58" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" opacity=".7"/>
+<path d="M214 52 C214 38 246 38 246 52" fill="none" stroke="{INK}" stroke-width="5" stroke-linecap="round"/>
+<!-- stand legs + flames -->
+<g stroke="{INK}" stroke-width="4.5" stroke-linecap="round" fill="none">
+<path d="M86 236 L74 304"/><path d="M374 236 L386 304"/><path d="M118 236 L112 300"/><path d="M342 236 L348 300"/><path d="M74 304 L112 300"/><path d="M386 304 L348 300"/>
+</g>
+<g stroke="{INK}" stroke-width="3.5"><rect x="160" y="270" width="36" height="30" rx="5" fill="#5c7a2e"/><rect x="264" y="270" width="36" height="30" rx="5" fill="#5c7a2e"/></g>
+<g stroke="#c8963e" stroke-width="2" stroke-linejoin="round"><path d="M178 270 C168 256 172 246 178 236 C184 246 188 256 178 270 Z" fill="#f4c542"/><path d="M282 270 C272 256 276 246 282 236 C288 246 292 256 282 270 Z" fill="#f4c542"/></g>
+<g fill="#e0662f"><path d="M178 268 C174 260 175 254 178 248 C181 254 182 260 178 268 Z"/><path d="M282 268 C278 260 279 254 282 248 C285 254 286 260 282 268 Z"/></g>
+<!-- pan -->
+<path d="M64 206 L396 206 L384 238 C382 244 376 248 368 248 L92 248 C84 248 78 244 76 238 Z" fill="url(#cf-steel)" stroke="{INK}" stroke-width="4.5" stroke-linejoin="round"/>
+<path d="M96 222 H364" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity=".6"/>
+<path d="M50 206 C40 206 36 214 44 218 L64 218" fill="none" stroke="{INK}" stroke-width="5" stroke-linecap="round"/><path d="M410 206 C420 206 424 214 416 218 L396 218" fill="none" stroke="{INK}" stroke-width="5" stroke-linecap="round"/>
+<path d="M110 136 L350 136 L396 206 L64 206 Z" fill="#d7dce2" stroke="{INK}" stroke-width="4.5" stroke-linejoin="round"/>
+<path d="M120 142 L340 142 L380 202 L80 202 Z" fill="#b8392a" stroke="{INK}" stroke-width="3"/>
+<!-- meatballs (back row smaller for depth) -->
+<g stroke="{INK}" stroke-width="3">{''.join(f'<circle cx="{x}" cy="{y}" r="{r}" fill="url(#cf-ball)"/>' for x, y, r in _MB)}</g>
+<g fill="#f2a08a" opacity=".55">{''.join(f'<circle cx="{x - r * .35:.0f}" cy="{y - r * .4:.0f}" r="{r * .28:.1f}"/>' for x, y, r in _MB)}</g>
+<g fill="#d14a35" opacity=".85"><path d="M140 164 c10 -4 20 4 30 0"/><path d="M230 184 c10 -4 20 4 30 0"/></g>
+<g fill="#7cae4c"><circle cx="168" cy="160" r="3"/><circle cx="236" cy="158" r="3"/><circle cx="196" cy="182" r="3"/><circle cx="276" cy="184" r="3"/><circle cx="312" cy="162" r="3"/><circle cx="142" cy="186" r="3"/></g>
+<g fill="#f6efd9"><circle cx="160" cy="150" r="2"/><circle cx="262" cy="168" r="2"/><circle cx="214" cy="196" r="2"/><circle cx="330" cy="190" r="2"/></g>
+<!-- tongs resting on the edge -->
+<g transform="rotate(-24 360 150)" stroke="{INK}" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="#c3cad3"><path d="M330 160 L420 150 L422 158 L332 166 Z"/><path d="M330 168 L420 166 L420 174 L332 174 Z"/></g>
+<!-- steam -->
+<g fill="none" stroke="#fffdf7" stroke-width="5.5" stroke-linecap="round"><path d="M186 124 c-14 -16 14 -24 0 -42"/><path d="M230 118 c-14 -16 14 -24 0 -42"/><path d="M274 124 c-14 -16 14 -24 0 -42"/></g>
+<g fill="none" stroke="{INK}" stroke-width="2" stroke-linecap="round" opacity=".3"><path d="M186 124 c-14 -16 14 -24 0 -42"/><path d="M230 118 c-14 -16 14 -24 0 -42"/><path d="M274 124 c-14 -16 14 -24 0 -42"/></g>
 </svg>"""

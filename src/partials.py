@@ -5,7 +5,7 @@ NAV = [("index.html", "Home"), ("menu.html", "Menu"), ("catering.html", "Caterin
 
 
 def egg(eid, extra=""):
-    return ('<button class="egg %s" type="button" data-egg="%s" aria-label="A golden egg — click to collect">'
+    return ('<button class="egg %s" type="button" data-egg="%s" aria-label="A golden egg. Click to collect it">'
             '<svg viewBox="0 0 22 28" aria-hidden="true"><use href="/assets/img/sprite.svg#i-egg"/></svg></button>') % (extra, eid)
 
 
@@ -53,7 +53,7 @@ def chrome_top(path):
 </div>
 <header class="site-header">
   <nav class="wrap nav" aria-label="Main">
-    <a class="brand" href="/" aria-label="The Goose — home">
+    <a class="brand" href="/" aria-label="The Goose home page">
       <svg class="brand__mark" aria-hidden="true"><use href="/assets/img/sprite.svg#i-goose"/></svg>
       <span class="brand__word">The Goose</span>
     </a>
@@ -106,7 +106,7 @@ def chrome_bottom(scripts=""):
       <div>
         <h4>Hours</h4>
         <ul><li>Mon–Fri · 7:30am–4pm</li><li>Sat · 10am–4pm</li><li>Sun · select Sundays</li></ul>
-        <p style="margin-top:14px;font-size:.9rem">Psst — three golden eggs are hidden around this site. Find them all to open the vault.</p>
+        <p style="margin-top:14px;font-size:.9rem">Psst, three golden eggs are hidden around this site. Find them all to open the vault.</p>
       </div>
     </div>
     <div class="footer__base">
@@ -123,12 +123,12 @@ def chrome_bottom(scripts=""):
     <button class="vault__close" type="button" data-vault-close aria-label="Close"><svg aria-hidden="true"><use href="/assets/img/sprite.svg#i-x"/></svg></button>
     <p class="eyebrow" style="color:var(--gold-soft)">Off-menu · regulars only</p>
     <h2 id="vault-h">You found the <span class="script">secret</span> menu.</h2>
-    <p style="color:rgba(247,243,230,.8)">Nearly fifty sandwiches that never made the board — named by generations of students. A taste:</p>
+    <p style="color:rgba(247,243,230,.8)">Nearly fifty sandwiches that never made the board, most of them named by students. Here are a few:</p>
     <ul class="vault__list">
       <li><b>Darth Vader</b><span>Roast beef dipped in au jus, Muenster, BBQ, bacon</span></li>
       <li><b>Charizard</b><span>Buffalo chicken, prosciutto, bacon, pepper jack, Santa Fe turkey, hot sauce</span></li>
       <li><b>Wooly Mammoth</b><span>Hot roast beef, meatballs, bacon, chili, provolone, hot sauce</span></li>
-      <li><b>Strugglebus</b><span>Bacon, pepper ham, cheddarjack, lettuce, mayo, cucumber — melted &amp; toasted</span></li>
+      <li><b>Strugglebus</b><span>Bacon, pepper ham, cheddarjack, lettuce, mayo, cucumber, melted and toasted</span></li>
       <li><b>Pink Monkey</b><span>Meatballs, prosciutto &amp; provolone on a hoagie</span></li>
       <li><b>The Incredible Bulk</b><span>A Mammoth on a 3-foot French roll (order 24 hrs ahead)</span></li>
     </ul>

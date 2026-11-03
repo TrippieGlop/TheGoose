@@ -1,7 +1,7 @@
 """Builds the static site into ../site. Run: python3 build.py"""
 import os, shutil, html
 from partials import head, chrome_top, chrome_bottom, egg, SITE
-from art import HERO_HOAGIE, SHUTTLE, CLUB, PLATTER, GOOSE, CHANDELIER
+from art import HERO_HOAGIE, SHUTTLE, TAKE_SHOTS, GOMBO, CHEESESTEAK, PLATTER, CHAFING, GOOSE, CHANDELIER
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(ROOT, "..", "site")
@@ -79,7 +79,7 @@ home = f"""
   <div class="wrap">
     <div class="section-head reveal">
       <div><p class="eyebrow">House favorites</p><h2 id="fav-h">The ones people drive back for.</h2></div>
-      <p class="lede">Built on Portuguese rolls, hoagie rolls and towers of toasted rye — the house originals that made The Goose a South Side legend.</p>
+      <p class="lede">Portuguese rolls, hoagie rolls and big stacks of toasted rye. These are the house originals regulars keep coming back for.</p>
     </div>
     <div class="bento">
       <a class="tile tile--xl reveal" href="/menu#special-hoagies" style="text-decoration:none">
@@ -90,10 +90,12 @@ home = f"""
       </a>
       <a class="tile tile--md reveal" href="/menu#foods" style="text-decoration:none;--d:.1s">
         <span class="tag tag--green">Legend</span><span class="price">$7.75</span>
-        <h3>Take A Shots</h3><p>Roast beef, Santa Fe turkey, Swiss, slaw &amp; Russian — toasted on three slices of rye.</p>
+        <div class="tile__art">{TAKE_SHOTS}</div>
+        <h3>Take A Shots</h3><p>Roast beef, Santa Fe turkey, Swiss, slaw and Russian, toasted on three slices of rye.</p>
       </a>
       <a class="tile tile--sm reveal" href="/menu#foods" style="text-decoration:none;--d:.2s">
         <span class="tag tag--gold">Big one</span><span class="price">$8.99</span>
+        <div class="tile__art">{GOMBO}</div>
         <h3>The Gombo</h3><p>Two meats, two cheeses, bacon, lettuce &amp; tomato on FOUR slices of toasted rye.</p>
       </a>
       <div class="tile tile--wide reveal on-dark">
@@ -109,9 +111,9 @@ home = f"""
     <div class="story__art reveal">{GOOSE}</div>
     <div class="reveal" style="--d:.1s">
       <p class="eyebrow">Our story</p>
-      <h2 id="story-h">A South Side tradition, one hoagie at a time.</h2>
+      <h2 id="story-h">A family deli on Fourth Street.</h2>
       <p class="story__quote">Ask any Lehigh student where to eat, and they’ll point you down Fourth Street.</p>
-      <p class="muted">The Goose — the Goosey Gander Deli to old-timers — is a family-run sandwich shop just off Lehigh’s campus. Fresh-sliced meats, generous builds and friendly faces behind the counter have made it a lunch ritual for students, professors, families and South Side neighbors for decades. Student groups even team up with the deli for “Keep the Goose Open Late” nights to raise money for their causes.</p>
+      <p class="muted">Old-timers still call it the Goosey Gander Deli. It’s a family-run sandwich shop just off Lehigh’s campus, and for decades students, professors and South Side neighbors have lined up here for lunch. Student groups even team up with the deli for “Keep the Goose Open Late” nights to raise money for their causes.</p>
       <div class="stats">
         <div class="stat"><strong>30+</strong><span>years serving the Valley</span></div>
         <div class="stat"><strong>3</strong><span>ways to order: online, phone, fax</span></div>
@@ -129,7 +131,7 @@ home = f"""
     </div>
     <div class="duo">
       <article class="duo-card duo-card--cater reveal">
-        <div class="duo-card__art">{PLATTER.replace('id="pl-t"','id="pl-t2"').replace('aria-labelledby="pl-t"','aria-labelledby="pl-t2"')}</div>
+        <div class="duo-card__art">{PLATTER}</div>
         <div>
           <p class="eyebrow">Catering</p>
           <h3>Trays, buffets &amp; bag lunches</h3>
@@ -147,7 +149,7 @@ home = f"""
         <div>
           <p class="eyebrow">The Gander Room</p>
           <h3>A banquet hall upstairs</h3>
-          <p class="muted">A full-service banquet facility perched right above The Goose. Showers, rehearsal dinners, team banquets, reunions — we cook, you celebrate.</p>
+          <p class="muted">A full-service banquet facility perched right above The Goose. Showers, rehearsal dinners, team banquets and reunions. We handle the food.</p>
           <ul>
             <li>{ic("check")}Hot hors d’oeuvres &amp; cold platters</li>
             <li>{ic("check")}Prime rib, seafood, chicken &amp; pasta entrées</li>
@@ -165,7 +167,7 @@ home = f"""
     <svg class="campus__seal" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="56" fill="#fffdf7" stroke="#241811" stroke-width="3"/><circle cx="60" cy="60" r="46" fill="none" stroke="#241811" stroke-width="1.5" stroke-dasharray="3 5"/><text x="60" y="52" text-anchor="middle" font-family="Playfair Display, serif" font-weight="800" font-size="15" fill="#241811">BROWN</text><text x="60" y="68" text-anchor="middle" font-family="Yellowtail, cursive" font-size="16" fill="#557a3a">&amp;</text><text x="60" y="84" text-anchor="middle" font-family="Playfair Display, serif" font-weight="800" font-size="15" fill="#241811">WHITE</text></svg>
     <div>
       <h2 id="campus-h">Steps from Lehigh. Part of the tradition.</h2>
-      <p>Between classes, after practice, on move-in day and at reunion — The Goose has fed generations of Mountain Hawks. Student account? Pick “Student” when you register.</p>
+      <p>Between classes, after practice, on move-in day and at reunion, The Goose has fed generations of Mountain Hawks. Student account? Pick “Student” when you register.</p>
     </div>
     <a class="btn btn--light" href="/account#register">Create an account {ic("arrow")}</a>
   </div>
@@ -203,7 +205,7 @@ menu = f"""
     <p class="lede">Fresh-sliced, built to order. Choice of breads on sandwiches: rye, white, wheat or round rolls. Prices subject to change.</p>
     <div class="btn-row" style="margin-top:24px"><a class="btn btn--matcha" href="/account">{ic("bag")}Order online</a><a class="btn btn--ghost" href="/catering">Catering menu {ic("arrow")}</a></div>
   </div>
-  <div class="page-hero__art reveal" style="--d:.1s">{CLUB}</div>
+  <div class="page-hero__art reveal" style="--d:.1s">{CHEESESTEAK}</div>
   </div>
 </section>
 <div class="menu-tools">
@@ -215,7 +217,7 @@ menu = f"""
 <div class="wrap">
   <p id="menu-count" class="muted" role="status" aria-live="polite" style="margin:16px 0 0"></p>
   <div id="menu-root"><noscript><p class="empty">Turn on JavaScript to browse the interactive menu, or call (610) 868-0176.</p></noscript></div>
-  <p class="empty" id="menu-empty" hidden>No sandwiches match that — but the counter can make almost anything. Call (610) 868-0176.</p>
+  <p class="empty" id="menu-empty" hidden>Nothing matches that, but the counter can make almost anything. Call (610) 868-0176.</p>
 </div>
 """
 
@@ -232,7 +234,7 @@ catering = f"""
     <p class="lede">Office lunches, tailgates, team dinners, graduation parties. Trays and buffets built fresh, priced per person, and customized to your crowd and budget.</p>
     <div class="btn-row" style="margin-top:24px"><a class="btn btn--matcha" href="#inquire">Plan my order {ic("arrow")}</a><a class="btn btn--ghost" href="tel:+16108680176">{ic("phone")}(610) 868-0176</a></div>
   </div>
-  <div class="page-hero__art reveal" style="--d:.1s">{PLATTER}</div>
+  <div class="page-hero__art reveal" style="--d:.1s">{CHAFING}</div>
   </div>
 </section>
 
@@ -241,9 +243,9 @@ catering = f"""
     <h2 id="how-h" class="sr-only">How catering works</h2>
     <ol class="steps">
       <li class="reveal"><h3>Pick your spread</h3><p>Choose trays, a cold buffet, or let us build a hot buffet for your headcount.</p></li>
-      <li class="reveal" style="--d:.08s"><h3>Tell us the details</h3><p>Date, time, number of guests, pickup or drop-off — send an inquiry or call.</p></li>
+      <li class="reveal" style="--d:.08s"><h3>Tell us the details</h3><p>Date, time, number of guests, and pickup or drop-off. Send an inquiry or give us a call.</p></li>
       <li class="reveal" style="--d:.16s"><h3>We confirm &amp; quote</h3><p>The Goosemen will confirm your order and final price before the big day.</p></li>
-      <li class="reveal" style="--d:.24s"><h3>Eat like a legend</h3><p>Buffets include plates, napkins, utensils &amp; tablecloth.</p></li>
+      <li class="reveal" style="--d:.24s"><h3>Pick up and enjoy</h3><p>Buffets come with plates, napkins, utensils and a tablecloth.</p></li>
     </ol>
   </div>
 </section>
@@ -282,7 +284,7 @@ catering = f"""
     <div class="cols-3">
       <div class="list-card reveal"><h3>Entrées</h3><ul><li>Baked ziti with cheese</li><li>Italian meatballs</li><li>Meat, cheese or veggie lasagna</li><li>Cheese stuffed shells</li><li>Ham heated with pineapple juice</li><li>Thinly sliced roast beef au jus</li><li>Sausage with onions &amp; peppers</li><li>Pulled turkey with gravy</li><li>Pork BBQ</li><li>Roastery chicken</li><li>Chicken à la Gander (grilled chicken)</li></ul></div>
       <div class="list-card reveal" style="--d:.08s"><h3>Vegetables &amp; appetizers</h3><ul><li>Tossed salad or fruit salad</li><li>String beans</li><li>Glazed carrots</li><li>Corn</li><li>Peas</li><li>Mixed vegetables</li></ul></div>
-      <div class="list-card reveal" style="--d:.16s"><h3>Sides &amp; dessert</h3><ul><li>Mashed potatoes</li><li>Macaroni &amp; cheese</li><li>Irish parsley potatoes</li><li>Desserts available — just ask</li></ul></div>
+      <div class="list-card reveal" style="--d:.16s"><h3>Sides &amp; dessert</h3><ul><li>Mashed potatoes</li><li>Macaroni &amp; cheese</li><li>Irish parsley potatoes</li><li>Desserts available, just ask</li></ul></div>
     </div>
   </div>
 </section>
@@ -292,7 +294,7 @@ catering = f"""
     <div class="reveal">
       <p class="eyebrow">Book it</p>
       <h2 id="inq-h">Start a catering inquiry</h2>
-      <p class="lede">Share the basics and we’ll help you plan the rest. The fastest route is still a phone call — the Goosemen are happy to talk it through.</p>
+      <p class="lede">Tell us the basics and we’ll help with the rest. Calling is still the fastest way, and the Goosemen are happy to talk it through.</p>
       {CONTACT}
     </div>
     <form class="panel form reveal" id="inquiry" data-validate novalidate>
@@ -323,7 +325,7 @@ gander = f"""
   <div class="reveal">
     <p class="eyebrow">Upstairs at The Goose</p>
     <h1>The Gander <span class="script" style="color:var(--gold-soft)">Room</span></h1>
-    <p class="lede">A full-service banquet facility perched above The Goose on the fabulous South Side of Bethlehem. Bring the guests — we’ll handle the food.</p>
+    <p class="lede">A full-service banquet facility perched above The Goose on the fabulous South Side of Bethlehem. You bring the guests and we’ll handle the food.</p>
     <div class="btn-row" style="margin-top:24px"><a class="btn btn--gold" href="/catering#inquire">Ask about a date {ic("arrow")}</a><a class="btn btn--ghost" href="tel:+16108680176" style="color:var(--foam)">{ic("phone")}(610) 868-0176</a></div>
   </div>
   <div class="page-hero__art page-hero__art--hang reveal" style="--d:.1s">{CHANDELIER}</div>
@@ -368,9 +370,9 @@ account = f"""
     <div class="panel on-dark reveal" style="background:var(--matcha-800);border-color:var(--ink)">
       <h2 style="font-size:2rem">Why register?</h2>
       <ul class="perk-list">
-        <li>{ic("bag")}<div><strong>Order ahead</strong><br><span class="muted">Skip the line — pick up when it’s ready.</span></div></li>
+        <li>{ic("bag")}<div><strong>Order ahead</strong><br><span class="muted">Skip the line and pick up when it’s ready.</span></div></li>
         <li>{ic("star")}<div><strong>Save your go-to</strong><br><span class="muted">Your usual, without the explaining.</span></div></li>
-        <li>{ic("gift")}<div><strong>Coupons &amp; event news</strong><br><span class="muted">Optional emails — opt out anytime.</span></div></li>
+        <li>{ic("gift")}<div><strong>Coupons &amp; event news</strong><br><span class="muted">Optional emails. Opt out anytime.</span></div></li>
         <li>{ic("shield")}<div><strong>Secure checkout</strong><br><span class="muted">Card payments are handled by the ordering system’s payment processor. We never see your full card number.</span></div></li>
       </ul>
       <a class="btn btn--light" data-order-link href="https://www.thegoose.com/" style="margin-top:28px">Go to online ordering {ic("arrow")}</a>
@@ -420,7 +422,7 @@ account = f"""
             <div class="field"><label for="r-phone">Phone <span class="req" aria-hidden="true">*</span></label><input id="r-phone" name="phone" type="tel" required autocomplete="tel" pattern="[0-9()+.\\-\\s]{{10,}}"><span class="err">Enter a 10-digit phone.</span></div>
             <div class="field"><label for="r-email">Email <span class="req" aria-hidden="true">*</span></label><input id="r-email" name="email" type="email" required autocomplete="email"><span class="hint">Your password will be emailed here.</span><span class="err">Enter a valid email.</span></div>
           </div>
-          <label class="check"><input type="checkbox" name="optin"> <span>Send me coupons &amp; event notices by email. (Optional — unsubscribe anytime.)</span></label>
+          <label class="check"><input type="checkbox" name="optin"> <span>Send me coupons &amp; event notices by email. (Optional. Unsubscribe anytime.)</span></label>
           <h3 style="margin:8px 0 0">Login information</h3>
           <div class="form-row">
             <div class="field"><label for="r-user">Username <span class="req" aria-hidden="true">*</span></label><input id="r-user" name="username" required minlength="4" maxlength="10" pattern="\\S{{4,10}}" autocomplete="username" autocapitalize="none" spellcheck="false" aria-describedby="r-user-h"><span class="hint" id="r-user-h">4–10 characters, no spaces.</span><span class="err">4–10 characters with no spaces.</span></div>
@@ -458,9 +460,9 @@ privacy = f"""
 <p>Card payments for online orders are processed by our ordering system’s payment processor. Your full card number is sent directly to that processor over an encrypted connection and is <strong>never stored on this website or seen by our staff</strong>. We may receive limited details such as the card type, last four digits and whether the payment succeeded, so we can match payments to orders. We accept Visa, Mastercard and American Express.</p>
 <h2 id="share">4. How we share information</h2>
 <p>We do not sell or rent your personal information. We share it only with:</p>
-<ul><li><strong>Service providers</strong> that help us operate — website hosting, our online ordering platform, payment processing and email — who may use it only to provide services to us.</li><li><strong>Legal and safety</strong> recipients when required by law or to protect the rights, property or safety of our customers, staff or others.</li><li><strong>A successor</strong> if the business is sold or transferred, subject to this policy.</li></ul>
+<ul><li><strong>Service providers</strong> that help us operate, such as website hosting, our online ordering platform, payment processing and email. They may use it only to provide services to us.</li><li><strong>Legal and safety</strong> recipients when required by law or to protect the rights, property or safety of our customers, staff or others.</li><li><strong>A successor</strong> if the business is sold or transferred, subject to this policy.</li></ul>
 <h2 id="cookies">5. Cookies &amp; local storage</h2>
-<p>This site does not set advertising or tracking cookies. It uses your browser’s local storage for small conveniences only — for example, remembering that you dismissed an announcement or which golden eggs you’ve found. That information stays on your device, is never sent to us, and you can clear it anytime in your browser settings. Our separate online ordering system may use essential cookies to keep you logged in and your cart working.</p>
+<p>This site does not set advertising or tracking cookies. It uses your browser’s local storage for small conveniences only, for example remembering that you dismissed an announcement or which golden eggs you’ve found. That information stays on your device, is never sent to us, and you can clear it anytime in your browser settings. Our separate online ordering system may use essential cookies to keep you logged in and your cart working.</p>
 <h2 id="third">6. Third-party services</h2>
 <p>Some pages load content from third parties, which may receive your IP address when you view them: Google Fonts (typefaces), Google Maps (the embedded map), and links to Instagram, Facebook and X. Their own privacy policies govern how they handle data.</p>
 <h2 id="security">7. Security</h2>
@@ -468,7 +470,7 @@ privacy = f"""
 <h2 id="retention">8. Retention</h2>
 <p>We keep account information while your account is active and order records as long as needed for business, tax and legal purposes. Inquiry details are kept only as long as needed to respond and plan your event.</p>
 <h2 id="choices">9. Your choices &amp; rights</h2>
-<ul><li><strong>Email:</strong> unsubscribe from marketing using the link in any email or by contacting us. We’ll still send order-related messages.</li><li><strong>Access, correction &amp; deletion:</strong> contact us to review, update or delete your account information, subject to records we must keep by law.</li><li><strong>Do Not Track / Global Privacy Control:</strong> because we don’t track you across sites or sell data, there’s nothing to opt out of — but we honor these signals.</li></ul>
+<ul><li><strong>Email:</strong> unsubscribe from marketing using the link in any email or by contacting us. We’ll still send order-related messages.</li><li><strong>Access, correction &amp; deletion:</strong> contact us to review, update or delete your account information, subject to records we must keep by law.</li><li><strong>Do Not Track / Global Privacy Control:</strong> because we don’t track you across sites or sell data, there’s nothing to opt out of, but we honor these signals.</li></ul>
 <h2 id="kids">10. Children</h2>
 <p>This site isn’t directed to children under 13, and we don’t knowingly collect their personal information. If you believe a child has given us information, contact us and we’ll delete it.</p>
 <h2 id="changes">11. Changes</h2>
@@ -519,13 +521,13 @@ a11y = f"""
 notfound = f"""
 <section class="page-hero" style="text-align:center;padding-block:clamp(80px,14vw,160px)">
   <div class="wrap"><p class="eyebrow" style="justify-content:center">Error 404</p><h1>This page flew <span class="script">south.</span></h1>
-  <p class="lede" style="margin-inline:auto">We couldn’t find that page — but the hoagies are right where we left them.</p>
+  <p class="lede" style="margin-inline:auto">We couldn’t find that page, but the hoagies are right where we left them.</p>
   <div class="btn-row" style="justify-content:center;margin-top:28px"><a class="btn btn--matcha" href="/">Back home</a><a class="btn btn--ghost" href="/menu">See the menu</a></div></div>
 </section>
 """
 
 PAGES = [
-    ("index.html", "The Goose · Family-Run Deli in South Side Bethlehem, PA", "Fresh-sliced hoagies, house sandwiches, catering and the Gander Room banquet hall — a Lehigh University tradition on W. Fourth Street for 30+ years.", home, ""),
+    ("index.html", "The Goose · Family-Run Deli in South Side Bethlehem, PA", "Fresh-sliced hoagies, house sandwiches, catering and the Gander Room banquet hall. A Lehigh tradition on W. Fourth Street for 30+ years.", home, ""),
     ("menu.html", "Menu · The Goose Deli, Bethlehem", "Hoagies, house originals, delites, salads, soups and sides at The Goose in South Side Bethlehem. Search the full menu with prices.", menu, '<script src="/assets/js/menu-data.js" defer></script>\n'),
     ("catering.html", "Catering · The Goose, Bethlehem PA", "Party trays, cold and hot buffets and bag lunches for offices, teams and parties across the Lehigh Valley.", catering, ""),
     ("gander-room.html", "The Gander Room · Banquet Facility above The Goose", "A full-service banquet facility on Bethlehem’s South Side: hors d’oeuvres, platters, entrées and more for your event.", gander, ""),

@@ -1,4 +1,4 @@
-/* The Goose — site behavior. No trackers, no third-party scripts. */
+/* The Goose: site behavior. No trackers, no third-party scripts. */
 (function () {
   "use strict";
   document.documentElement.classList.remove("no-js");
@@ -295,7 +295,7 @@
       if (!validate(form)) return;
       var st = $(".form-status", form);
       st.hidden = false;
-      st.innerHTML = "This preview doesn’t send or save anything. Accounts and ordering currently run on The Goose’s ordering system — " +
+      st.innerHTML = "This preview doesn’t send or save anything. Accounts and ordering currently run on The Goose’s ordering system, so " +
         '<a href="' + CONFIG.orderingUrl + '" target="_blank" rel="noopener">continue there</a>.';
       $$("input[type=password]", form).forEach(function (p) { p.value = ""; });
     });
@@ -311,7 +311,7 @@
     ["name", "phone", "email", "date", "guests", "service", "details"].forEach(function (k) { if (d.get(k)) body.push(k.charAt(0).toUpperCase() + k.slice(1) + ": " + d.get(k)); });
     var st = $(".form-status", inq); st.hidden = false;
     if (CONFIG.email) {
-      location.href = "mailto:" + CONFIG.email + "?subject=" + encodeURIComponent("Catering inquiry — " + (d.get("date") || "")) + "&body=" + encodeURIComponent(body.join("\n"));
+      location.href = "mailto:" + CONFIG.email + "?subject=" + encodeURIComponent("Catering inquiry: " + (d.get("date") || "")) + "&body=" + encodeURIComponent(body.join("\n"));
       st.textContent = "Your email app should open with your inquiry filled in. Prefer the phone? Call (610) 868-0176.";
     } else {
       st.innerHTML = 'Thanks! The quickest way to book is a call: <a href="tel:+16108680176">(610) 868-0176</a>. Mention your date and headcount and they’ll take it from there.';
