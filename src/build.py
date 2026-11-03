@@ -551,6 +551,19 @@ def build():
             out = out.replace('<meta name="description"', '<meta name="robots" content="noindex">\n<meta name="description"') if path == "404.html" else out
         with open(os.path.join(OUT, path), "w", encoding="utf-8") as f:
             f.write(out)
+    # cache-bust: tag CSS/JS links with a content hash so browsers never mix new pages with old assets
+    import hashlib, glob
+    tags = {}
+    for rel in ["assets/css/styles.css", "assets/js/main.js", "assets/js/menu-data.js", "assets/img/sprite.svg"]:
+        with open(os.path.join(OUT, rel), "rb") as fh:
+            tags["/" + rel] = hashlib.sha1(fh.read()).hexdigest()[:10]
+    for page_path in glob.glob(os.path.join(OUT, "*.html")):
+        with open(page_path, encoding="utf-8") as fh:
+            s = fh.read()
+        for url, h in tags.items():
+            s = s.replace('"' + url + '"', '"' + url + "?v=" + h + '"').replace('"' + url + "#", '"' + url + "?v=" + h + "#")
+        with open(page_path, "w", encoding="utf-8") as fh:
+            fh.write(s)
     print("built", len(PAGES), "pages ->", os.path.normpath(OUT))
 
 
